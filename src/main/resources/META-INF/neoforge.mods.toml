@@ -1,0 +1,31 @@
+modLoader="javafml"
+loaderVersion="[3,)"
+license="MIT"
+
+# Optional issue tracker (you can update later)
+#issueTrackerURL="https://github.com/Duncan56/feudalism-neoforge-mod/issues"
+
+[[mods]]
+modId="feudalism"
+version="1.0.0"
+displayName="Feudalism"
+authors="Duncan"
+description='''
+Adds feudal factions, vassals, wars, claims, taxes, and land hierarchy systems.
+'''
+
+# --- Dependencies ---
+
+[[dependencies.feudalism]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.feudalism]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1,1.22)"
+ordering="NONE"
+side="BOTH"

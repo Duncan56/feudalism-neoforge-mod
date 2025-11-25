@@ -1,5 +1,8 @@
-class Scratch {
-    public static void main(String[] args) {
-        
+package com.example.feudal.manager;
+
+public class VassalManager {
+
+    public void addVassal(String lord, String vassal) {
+        // TODO: implement
     }
 }
