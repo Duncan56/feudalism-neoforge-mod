@@ -1,0 +1,44 @@
+feat: implement full town system, commands, storage, and config integration
+
+### Added
+- Complete Town system:
+  - Town creation, deletion, metadata (desc/MOTD)
+  - Player ↔ town linking (TownPlayerData)
+  - Leadership transfer, rank management (Leader/Officer/Citizen)
+  - Public vs invite-only towns
+- Full invite system (send/accept/deny)
+- Chunk claiming:
+  - Claim, unclaim, list claims
+  - Claim limits (base + per member)
+  - /town here (check chunk ownership)
+
+### Commands
+- Added every `/town` subcommand
+- Added validation & detailed error messages
+- Added command-only debug logging (toggle via config)
+
+### Storage
+- Implemented TownStorage:
+  - Saves towns.json and playerdata.json
+  - Loads cleanly on server start
+  - Safe constructors to avoid config preloading crashes
+
+### Config
+- Added FeudalConfig:
+  - BASE_CLAIMS
+  - CLAIMS_PER_MEMBER
+  - MAX_DESC_LENGTH
+  - MAX_MOTD_LENGTH
+  - DEBUG_MODE
+- Correct NeoForge 1.21.1 config registration
+
+### Infrastructure
+- Updated FeudalismMod entrypoint
+- Cleaned lifecycle logging
+- Registered commands and events properly
+
+### Notes
+- Protection system not implemented yet (block break/place, interactions)
+- Debug mode currently logs command-level execution only
+
+This commit completes Phase 1 of the town/claim system.
