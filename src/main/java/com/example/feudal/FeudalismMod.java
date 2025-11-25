@@ -1,31 +1,55 @@
-package com.feudalism;
+// src/main/java/com/example/feudal/FeudalismMod.java
+package com.example.feudal;
 
-import net.neoforged.fml.common.Mod;
+import com.mojang.logging.LogUtils;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import org.slf4j.Logger;
 
-import net.minecraft.commands.Commands;
-import net.minecraft.network.chat.Component;
-
-@Mod(FeudalismMod.MODID)
+@Mod(FeudalismMod.MODID) // must match modId in neoforge.mods.toml
 public class FeudalismMod {
     public static final String MODID = "feudalism";
+    private static final Logger LOGGER = LogUtils.getLogger();
 
-    public FeudalismMod(IEventBus modEventBus) {
-        // Register mod-level event listeners
-        modEventBus.addListener(this::onRegisterCommands);
+    // NeoForge 1.21.x entrypoint: constructor gets the mod event bus and container
+    public FeudalismMod(IEventBus modEventBus, ModContainer modContainer) {
+        // Register lifecycle listeners
+        modEventBus.addListener(this::onCommonSetup);
+        modEventBus.addListener(this::onClientSetup);
+
+        // Register this class on the global NeoForge event bus
+        // (only needed because we have @SubscribeEvent methods below)
+        NeoForge.EVENT_BUS.register(this);
     }
 
-    private void onRegisterCommands(RegisterCommandsEvent event) {
-        event.getDispatcher().register(
-                Commands.literal("feudaltest")
-                        .executes(ctx -> {
-                            ctx.getSource().sendSuccess(
-                                    () -> Component.literal("Feudalism command works in 1.21.1!"),
-                                    false
-                            );
-                            return 1;
-                        })
-        );
+    private void onCommonSetup(final FMLCommonSetupEvent event) {
+        LOGGER.info("HELLO FROM COMMON SETUP");
+        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT);
+        LOGGER.info("ITEM >> {}", Items.IRON_INGOT);
+        LOGGER.info("The magic number is... {}", 42);
+    }
+
+    private void onClientSetup(final FMLClientSetupEvent event) {
+        LOGGER.info("HELLO FROM CLIENT SETUP");
+        // If you want to access Minecraft here, do it in enqueueWork to be safe:
+        /*
+        event.enqueueWork(() -> {
+            var mc = net.minecraft.client.Minecraft.getInstance();
+            LOGGER.info("MINECRAFT NAME >> {}", mc.getUser().getName());
+        });
+        */
+    }
+
+    @SubscribeEvent
+    public void onServerStarting(ServerStartingEvent event) {
+        LOGGER.info("Feudalism mod: server starting");
     }
 }
