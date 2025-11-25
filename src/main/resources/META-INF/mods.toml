@@ -1,0 +1,8 @@
+modLoader="javafml"
+loaderVersion="[2,)"
+license="Apache-2.0"
+[[mods]]
+modId="feudalism"
+version="1.0.0"
+displayName="Feudalism Mod"
+description="Adds factions, vassals, taxes and claims"
