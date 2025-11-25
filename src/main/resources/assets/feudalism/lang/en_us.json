@@ -1,0 +1,13 @@
+{
+  "itemGroup.feudalism": "Example Mod Tab",
+  "block.feudalism.example_block": "Example Block",
+  "item.feudalism.example_item": "Example Item",
+
+  "feudalism.configuration.title": "Feudalism Configs",
+  "feudalism.configuration.section.feudalism.common.toml": "Feudalism Configs",
+  "feudalism.configuration.section.feudalism.common.toml.title": "Feudalism Configs",
+  "feudalism.configuration.items": "Item List",
+  "feudalism.configuration.logDirtBlock": "Log Dirt Block",
+  "feudalism.configuration.magicNumberIntroduction": "Magic Number Text",
+  "feudalism.configuration.magicNumber": "Magic Number"
+}
